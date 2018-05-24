@@ -43,28 +43,29 @@ class FunnyMath(object):
         """
         return int(self.num**2/2.0 + self.num/2.0)
 
+    def report(self, end, start, num, label):
+        print('{0} approach took {1} seconds to get the result: {2}'.format(
+            label, round((end-start), 2), num))
+
 
 def main():
     fm = FunnyMath(num=100000000)
     start = time.time()
     num = fm.slowest()
     end = time.time()
-    print("Slowest approach took {0} seconds to get the result: {1}".format(
-        round((end-start), 2), num))
+    fm.report(end, start, num, 'Slowest')
 
     fm.num = 100000000
     start = time.time()
     num = fm.faster()
     end = time.time()
-    print("Faster approach took {0} seconds to get the result: {1}".format(
-        round((end-start), 2), num))
+    fm.report(end, start, num, 'Faster')
 
     fm.num = 100000000
     start = time.time()
     num = fm.fastest()
     end = time.time()
-    print("Fastest approach took {0} seconds to get the result: {1}".format(
-        round((end-start), 2), num))
+    fm.report(end, start, num, 'Fastest')
 
 
 if __name__ == "__main__":
