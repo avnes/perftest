@@ -5,7 +5,7 @@ import time
 class FunnyMath(object):
     """
     The purpose of this class is to show how important it is to think about
-    the efficieny of you algoritmes. Based on my blog post about the same
+    the efficiency of you algorithms. Based on my blog post about the same
     topic at http://audunnes.blogspot.dk/2016/06/the-art-of-creating-efficient-algorithms.html  # noqa E501
     """
 
@@ -16,9 +16,9 @@ class FunnyMath(object):
         assert type(num) is int, "num was not an integer {}".format(num)
         self.num = num
 
-    def slowest(self, num=0):
+    def slowest(self):
         """
-        Very ineffecient summary function. because it constantly updates
+        Very inefficient summary function. because it constantly updates
         the class variable during the loop.
         Reference: https://wiki.python.org/moin/PythonSpeed/PerformanceTips#Local_Variables  # noqa E501
         """
@@ -26,24 +26,25 @@ class FunnyMath(object):
             self.num += i
         return int(self.num)
 
-    def faster(self, num=0):
+    def faster(self):
         """
         Slightly faster summary function, because it only updates
         a local variable during the loop.
         """
-        num = self.num
-        for i in range(1, num):
-            num += i
-        return int(num)
+        local_num = self.num
+        for i in range(1, local_num):
+            local_num += i
+        return int(local_num)
 
-    def fastest(self, num=0):
+    def fastest(self):
         """
-        Efficient summary algoritme discovered by German mathematician
+        Efficient summary algorithm discovered by German mathematician
         Carl Friedrich Gauss.
         """
         return int(self.num**2/2.0 + self.num/2.0)
 
-    def report(self, end, start, num, label):
+    @staticmethod
+    def report(end, start, num, label):
         print('{0} approach took {1} seconds to get the result: {2}'.format(
             label, round((end-start), 2), num))
 
